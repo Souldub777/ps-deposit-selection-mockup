@@ -2,6 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isTierSlug, tiersBySlug } from "../../ui/tiers";
 
+// TODO: Swap these placeholders with the real booking URLs from Björn before going live.
+// Until then, the "Book your onboarding call" button points at placeholder hrefs.
+const BOOKING_URLS: Record<"initiate" | "master" | "council", string> = {
+  initiate: "PLACEHOLDER_INITIATE_URL",
+  master: "PLACEHOLDER_MASTER_URL",
+  council: "PLACEHOLDER_COUNCIL_URL",
+};
+
 type PageProps = {
   params: Promise<{
     tier: string;
@@ -16,6 +24,7 @@ export default async function BookingPage({ params }: PageProps) {
   }
 
   const tier = tiersBySlug[tierSlug];
+  const bookingUrl = BOOKING_URLS[tierSlug];
 
   return (
     <main className="shell">
@@ -30,10 +39,14 @@ export default async function BookingPage({ params }: PageProps) {
               This call allows the team to confirm your details and guide you
               into the next step.
             </p>
-            <button className="primaryButton" type="button">
+            <a
+              className="primaryButton"
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Book your onboarding call
-            </button>
-            <p className="smallNote">Placeholder only - booking link will be added later.</p>
+            </a>
           </div>
           <aside className="callPreview" aria-label={`${tier.name} call preview`}>
             <span className="tierKicker">{tier.kicker}</span>

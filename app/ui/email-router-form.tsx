@@ -7,12 +7,19 @@ import { tierFromEmail } from "../../lib/tier";
 export function EmailRouterForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [isChecking, setIsChecking] = useState(false);
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isChecking) return;
 
-    const tier = tierFromEmail(email);
-    router.push(tier ? `/book/${tier}` : "/select");
+    setIsChecking(true);
+    try {
+      const tier = await tierFromEmail(email);
+      router.push(tier ? `/book/${tier}` : "/select");
+    } finally {
+      setIsChecking(false);
+    }
   }
 
   return (
@@ -27,9 +34,15 @@ export function EmailRouterForm() {
         onChange={(event) => setEmail(event.target.value)}
         placeholder="you@example.com"
         required
+        disabled={isChecking}
       />
-      <button className="primaryButton" type="submit">
-        Continue
+      <button
+        className="primaryButton"
+        type="submit"
+        disabled={isChecking || email.trim().length === 0}
+        aria-busy={isChecking}
+      >
+        {isChecking ? "Checking..." : "Continue"}
       </button>
     </form>
   );
