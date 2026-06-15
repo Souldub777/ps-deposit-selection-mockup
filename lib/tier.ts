@@ -1,11 +1,22 @@
-export type Tier = "initiate" | "master" | "council";
+export type Tier =
+  | "initiate"
+  | "initiate-resit"
+  | "master"
+  | "master-resit"
+  | "council";
 
 const TIER_LOOKUP_BASE_URL =
   process.env.NEXT_PUBLIC_TIER_LOOKUP_URL ??
   "https://buhbkxyqgahbajvvehzt.supabase.co/functions/v1/ghl-proxy";
 
 function isTier(value: unknown): value is Tier {
-  return value === "initiate" || value === "master" || value === "council";
+  return (
+    value === "initiate" ||
+    value === "initiate-resit" ||
+    value === "master" ||
+    value === "master-resit" ||
+    value === "council"
+  );
 }
 
 export async function tierFromEmail(email: string): Promise<Tier | null> {

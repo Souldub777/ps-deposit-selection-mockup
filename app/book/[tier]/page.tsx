@@ -1,13 +1,16 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { isTierSlug, tiersBySlug } from "../../ui/tiers";
+import { isTierSlug, tiersBySlug, type TierSlug } from "../../ui/tiers";
 
-// TODO: Swap these placeholders with the real booking URLs from Björn before going live.
-// Until then, the "Book your onboarding call" button points at placeholder hrefs.
-const BOOKING_URLS: Record<"initiate" | "master" | "council", string> = {
-  initiate: "PLACEHOLDER_INITIATE_URL",
-  master: "PLACEHOLDER_MASTER_URL",
-  council: "PLACEHOLDER_COUNCIL_URL",
+// Real booking URLs from Björn 2026-06-15. Each tier maps to its dedicated
+// "Deposit Success Calls (Live Challenge)" calendar in GHL.
+const BOOKING_URLS: Record<TierSlug, string> = {
+  initiate: "https://link.petersage.com/widget/booking/cjC8mZBOO2cWSFNTjUtB",
+  "initiate-resit":
+    "https://link.petersage.com/widget/booking/HlSplewReiEQiCqwce1e",
+  master: "https://link.petersage.com/widget/booking/UO6dxBKGZCuRQQ4jInpc",
+  "master-resit":
+    "https://link.petersage.com/widget/booking/xPfr2Lgyw16IKfiPlWou",
+  council: "https://link.petersage.com/widget/booking/QHYrT3LZVtoZ0YMtYI78",
 };
 
 type PageProps = {
@@ -59,9 +62,6 @@ export default async function BookingPage({ params }: PageProps) {
             </div>
           </aside>
         </div>
-        <Link className="subtleLink" href="/select">
-          Choose a different level
-        </Link>
       </section>
     </main>
   );
