@@ -14,13 +14,17 @@ export default function SelectPage() {
             <a className="inlineLink" href="mailto:support@petersage.com">
               support@petersage.com
             </a>{" "}
-            and ask them to connect you with the person to talk to.
+            and ask them to connect you with the person to talk to. Use the
+            subject line <span className="subjectLine">I can not access my enrolment link</span>.
           </p>
           <div className="supportActions">
             <Link className="primaryButton" href="/">
               Try another email
             </Link>
-            <a className="subtleLink" href="mailto:support@petersage.com">
+            <a
+              className="subtleLink"
+              href="mailto:support@petersage.com?subject=I%20can%20not%20access%20my%20enrolment%20link"
+            >
               Email support
             </a>
           </div>

@@ -123,6 +123,11 @@ h1 {
   text-underline-offset: 4px;
 }
 
+.subjectLine {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .emailForm {
   margin-top: 34px;
   display: grid;

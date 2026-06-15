@@ -29,7 +29,7 @@ To stop the server, press `Ctrl+C` in the terminal where it is running.
 - Enter an email on `/`.
 - The email is trimmed and lowercased.
 - Emails starting with `i`, `m`, or `c` route to Initiate, Master, or Council.
-- Any other email routes to `/select`, where the user is asked to confirm the email or contact `support@petersage.com`.
+- Any other email routes to `/select`, where the user is asked to confirm the email or contact `support@petersage.com` with the subject line `I can not access my enrolment link`.
 - Booking pages are placeholders only. No database, API route, authentication, or real booking links are included.
 
 ## Test Emails
